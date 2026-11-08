@@ -72,7 +72,9 @@ LLM_API_KEY = (
     os.environ.get("FAV_LLM_API_KEY")
     or os.environ.get("HERMES_CUSTOM_LITELLM_CDEK_API_KEY", "")
 ).strip()
-LLM_MODEL = os.environ.get("FAV_LLM_MODEL", "deepseek-v4.1-flash")
+# Бесплатная модель в LiteLLM (input/output cost 0, контекст 65k). Карточки на ней
+# чуть суше, чем на deepseek-v4.1-flash, но платить за разбор не нужно.
+LLM_MODEL = os.environ.get("FAV_LLM_MODEL", "Gemma-4-12B-it-qat-w4a16-ct")
 LLM_MAX_INPUT = _int("FAV_LLM_MAX_INPUT", 14000)
 LLM_TIMEOUT = _int("FAV_LLM_TIMEOUT", 180)
 
