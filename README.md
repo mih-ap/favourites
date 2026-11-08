@@ -6,7 +6,7 @@ Self-hosted pipeline: Telegram → извлечение контента → LLM
 ![Python](https://img.shields.io/badge/python-3.13-3776ab)
 ![Docker](https://img.shields.io/badge/docker-compose-2496ed)
 ![License](https://img.shields.io/badge/license-MIT-green)
-[![Tests](https://img.shields.io/badge/tests-21%20passing-brightgreen)](#тесты)
+[![tests](https://github.com/mih-ap/favourites/actions/workflows/tests.yml/badge.svg)](https://github.com/mih-ap/favourites/actions/workflows/tests.yml)
 
 Личная справочная для одного человека: статья, рилс, видео или пост с фото,
 сохранённый в Telegram, превращается в заметку с переводом заголовка, выжимкой,
