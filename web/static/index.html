@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Избранное</title>
+<link rel="stylesheet" href="/static/style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><text y='19' font-size='19'>⭐</text></svg>">
+<script>
+  // тема до отрисовки, без мигания; ?theme=dark|light — принудительно
+  const forced = new URLSearchParams(location.search).get('theme');
+  if (forced === 'dark' || forced === 'light') localStorage.setItem('fav-theme', forced);
+  document.documentElement.dataset.theme =
+    localStorage.getItem('fav-theme') ||
+    (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+</script>
+</head>
+<body>
+<header class="hdr">
+  <a class="brand" href="/" title="Избранное">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1-5.4-2.9-5.4 2.9 1-6.1L3.2 9.5l6.1-.9L12 3z"/></svg>
+    <span>Избранное</span>
+  </a>
+  <div class="search">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4.2-4.2"/></svg>
+    <input id="q" type="search" placeholder="Поиск: тема, автор, текст…" autocomplete="off" spellcheck="false">
+    <kbd>/</kbd>
+  </div>
+  <div class="hdr__stats" id="stats"></div>
+  <button class="theme" id="theme" aria-label="Сменить тему" title="Светлая / тёмная тема">◐</button>
+</header>
+
+<main>
+  <div class="filters">
+    <div class="chips" id="categories" aria-label="Категории"></div>
+    <div class="chips chips--tags" id="tags" aria-label="Теги"></div>
+  </div>
+
+  <div class="grid" id="grid"></div>
+  <div id="sentinel" class="sentinel"></div>
+  <div class="empty" id="empty" hidden>
+    <div class="empty__icon">🗂</div>
+    <h2>Пока пусто</h2>
+    <p>Пришлите ссылку в Telegram-бот — материал появится здесь через минуту.</p>
+  </div>
+  <div class="more"><button id="more" class="btn" hidden>Показать ещё</button></div>
+</main>
+
+<footer class="ftr">
+  <span>Личная справочная. Карточки лежат в Obsidian: <code>Brain/library/</code></span>
+</footer>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer__backdrop" data-close></div>
+  <aside class="drawer__panel" role="dialog" aria-modal="true" aria-label="Материал">
+    <button class="drawer__close" data-close aria-label="Закрыть">×</button>
+    <div id="detail"></div>
+  </aside>
+</div>
+
+<script src="/static/marked.min.js"></script>
+<script src="/static/app.js"></script>
+</body>
+</html>
